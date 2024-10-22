@@ -1,19 +1,97 @@
+//plugins {
+//    id 'java'
+//}
+//
+//java {
+//    sourceCompatibility = '17'
+//    targetCompatibility = '17'
+//}
+//
+//
+//allprojects {
+//    group = 'com.example'
+//    version = '1.0-SNAPSHOT'
+//}
+//
+//subprojects {
+//    apply plugin: 'java'
+//
+//    repositories {
+//        mavenCentral()
+//    }
+//
+//    dependencies {
+//        testImplementation platform("io.qameta.allure:allure-bom:2.25.0")
+//        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+//        testImplementation 'io.qameta.allure:allure-junit5:2.29.0'
+//        testImplementation 'org.assertj:assertj-core:3.26.3'
+//        implementation 'org.assertj:assertj-core:3.26.3'
+//        implementation 'org.junit.jupiter:junit-jupiter:5.11.0'
+//        implementation 'org.aspectj:aspectjweaver:1.9.8'
+//    }
+//
+//    test {
+//        useJUnitPlatform()
+//    }
+//
+//    tasks.register('smoke', Test) {
+//        testLogging {
+//            events "passed", "skipped", "failed", "standardOut", "standardError"
+//            exceptionFormat "full"
+//        }
+//        useJUnitPlatform {
+//            includeTags("smoke")
+//        }
+//    }
+//
+//    task cleanAllureReport(type: Delete) {
+//        delete file("$build/reports/allure-report")
+//    }
+//}
+//
+//
 plugins {
     id 'java'
+    id("io.qameta.allure") version "2.12.0"
+    id("io.qameta.allure-adapter") version "2.12.0"
+
 }
 
-group = 'com.example'
-version = '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+allprojects {
+    group = 'gradle-autotest'
+    version = '1.0-SNAPSHOT'
 }
 
-dependencies {
-    testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-}
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.qameta.allure'
+    apply plugin: "io.qameta.allure-adapter"
 
-test {
-    useJUnitPlatform()
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        testImplementation platform('org.junit:junit-bom:5.10.0')
+        testImplementation 'org.junit.jupiter:junit-jupiter'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.11.3'
+        testImplementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+        implementation 'org.junit.jupiter:junit-jupiter:5.11.3'
+
+
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+    allure {
+        adapter {
+            frameworks {
+                junit5{
+                    enabled.set(true)
+                }
+            }
+        }
+    }
+
 }

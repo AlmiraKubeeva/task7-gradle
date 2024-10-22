@@ -1,28 +1,38 @@
 package org.example.pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selenide.open;
+import static org.example.utils.Urls.CHECKBOXES;
 
-public class CheckBoxesPage {
+import org.aeonbits.owner.ConfigFactory;
+import org.example.utils.UIProps;
+
+
+
+public class CheckboxesPage {
+    UIProps props = ConfigFactory.create(UIProps.class);
 
     ElementsCollection checkboxes = $$x("//input");
 
-    public void checkFirstCheckbox() {
-        checkboxes.get(0).click();
+    private CheckboxesPage getThis() {
+        return this;
     }
 
-    public void uncheckSecondCheckbox() {
-        checkboxes.get(1).click();
+    @Step ("Открыть страницу чекбоксов")
+    public void openCheckboxes() {
+        open(props.baseUrl() + CHECKBOXES);
     }
 
-    public boolean isFirstCheckboxChecked() {
-        return checkboxes.get(0).should(Condition.attribute("checked", "true"));
+    @Step("Кликнуть по чекбоксу {index}")
+    public void clickCheckbox(int index) {
+        checkboxes.get(index).click();
     }
 
-    public boolean isSecondCheckboxUnchecked() {
-        return checkboxes.get(1).should(Condition.attribute("checked", ""));
+    @Step("Проверить, выбран ли чекбокс с индексом {index}")
+    public boolean isCheckboxChecked(int index) {
+        return checkboxes.get(index).isSelected();
     }
-
 }

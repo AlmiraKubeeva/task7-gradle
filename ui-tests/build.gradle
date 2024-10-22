@@ -1,28 +1,71 @@
-plugins {
-    id("io.qameta.allure") version "2.12.0"
-}
+//plugins {
+//    id("io.qameta.allure") version "2.12.0"
+//}
+//
+//dependencies {
+//    implementation project(':api-tests')
+//
+//    testImplementation 'com.codeborne:selenide:7.5.1'
+//    testImplementation 'io.qameta.allure:allure-selenide:2.21.0'
+//    implementation 'org.aeonbits.owner:owner:1.0.12'
+//    implementation 'com.codeborne:selenide:7.5.1'
+//
+////    allureAspectjWeaverAgent('org.aspectj:aspectjweaver:1.9.8')
+//
+//    testImplementation 'org.junit.platform:junit-platform-console-standalone:1.9.2'
+//
+////    testImplementation 'io.qameta.allure:allure-selenide:2.17.3' // Проверьте актуальную версию
+////    testImplementation 'com.codeborne:selenide:6.15.0'            // Последняя версия Selenide
+//
+//
+//    testImplementation 'io.qameta.allure:allure-junit5:2.20.0'  // убедитесь, что эта версия поддерживает Java 17
+//    implementation 'org.aspectj:aspectjweaver:1.9.7'  // также проверьте версию AspectJ
+//    // другие зависимости
+//
+//}
+//
+//allure {
+//    report {
+//        version.set("2.18.0")
+//    }
+//
+//    adapter {
+//        aspectjWeaver.set(true)
+//        aspectjVersion.set("1.9.8")
+//
+//        frameworks {
+//            junit5 {
+//                adapterVersion.set("2.18.0")
+//            }
+//        }
+//    }
+//}
+//
+//test {
+//    systemProperties System.getProperties()
+//
+//    testLogging {
+//        events "PASSED", "FAILED", "SKIPPED"
+//        exceptionFormat = "full"
+//        showStandardStreams = true
+//    }
+//
+//    test.outputs.upToDateWhen {
+//        false
+//    }
+//}
+//
+//
+//
 
 dependencies {
     implementation project(':api-tests')
 
     testImplementation 'com.codeborne:selenide:7.5.1'
     testImplementation 'io.qameta.allure:allure-selenide:2.21.0'
-    //testImplementation 'org.aspectj:aspectjweaver:1.9.8'
-}
+    implementation 'com.codeborne:selenide:7.5.1'
+    implementation 'io.qameta.allure:allure-selenide:2.21.0'
+    implementation 'org.aeonbits.owner:owner:1.0.4'
+    implementation 'org.assertj:assertj-core:3.26.0'
 
-allure {
-    report {
-        version.set("2.18.0")
-    }
-
-    adapter {
-        aspectjWeaver.set(true)
-        aspectjVersion.set("1.9.8")
-
-        frameworks {
-            junit5 {
-                adapterVersion.set("2.18.0")
-            }
-        }
-    }
 }

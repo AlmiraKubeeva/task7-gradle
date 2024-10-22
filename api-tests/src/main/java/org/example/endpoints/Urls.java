@@ -1,4 +1,4 @@
-package org.example.constants;
+package org.example.endpoints;
 
 public class Urls {
     public static final String BASE_URL = "http://9b142cdd34e.vps.myjino.ru:49268";

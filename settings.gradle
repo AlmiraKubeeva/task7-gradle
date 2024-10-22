@@ -1,2 +1,4 @@
 rootProject.name = 'task7-gradle'
+include 'api-tests'
+include 'ui-tests'
 
